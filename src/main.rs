@@ -20,6 +20,7 @@ fn main() {
             Arg::with_name("terminal")
                 .short("t")
                 .long("terminal")
+                .takes_value(true)
                 .help("Dump terminfo for the provided terminal"),
         )
         .arg(
@@ -35,7 +36,10 @@ fn main() {
                 .help("Dump numeric capabilities."),
         )
         .get_matches();
-    let term = UnibiTerm::from_env();
+    let term = match matches.value_of("terminal") {
+        Some(name) => UnibiTerm::from_term_name(name),
+        None => UnibiTerm::from_env(),
+    };
     if matches.is_present("boolean") {
         dump_boolean(&term);
     } else if matches.is_present("numeric") {
