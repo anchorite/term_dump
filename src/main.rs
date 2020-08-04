@@ -2,7 +2,7 @@ use clap::{App, Arg};
 use unibilium::*;
 
 fn dump_boolean(term: &UnibiTerm) {
-    for (name, value) in term.iter() {
+    for (name, value) in term.iter_bool() {
         println!("{}: {}", name, value);
     }
 }
