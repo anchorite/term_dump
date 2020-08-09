@@ -1,13 +1,13 @@
 use clap::{App, Arg};
 use unibilium::*;
 
-fn dump_boolean(term: &UnibiTerm) {
+fn dump_boolean(term: &Term) {
     for (name, value) in term.booleans().iter() {
         println!("{}: {}", name, value);
     }
 }
 
-fn dump_xboolean(term: &UnibiTerm) {
+fn dump_xboolean(term: &Term) {
     for (name, value) in term.ext_booleans().iter() {
         match name {
             Some(name) => println!("{}: {}", name, value),
@@ -16,13 +16,13 @@ fn dump_xboolean(term: &UnibiTerm) {
     }
 }
 
-fn dump_numeric(term: &UnibiTerm) {
+fn dump_numeric(term: &Term) {
     for (name, value) in term.numerics().iter() {
         println!("{}: {}", name, value);
     }
 }
 
-fn dump_string(term: &UnibiTerm) {
+fn dump_string(term: &Term) {
     for (name, value) in term.strings().iter() {
         match value {
             None => println!("{}: NULL", name),
@@ -66,8 +66,8 @@ fn main() {
         )
         .get_matches();
     let term = match matches.value_of("terminal") {
-        Some(name) => UnibiTerm::from_term_name(name),
-        None => UnibiTerm::from_env(),
+        Some(name) => Term::from_term_name(name),
+        None => Term::from_env(),
     };
     if matches.is_present("boolean") {
         dump_boolean(&term);
