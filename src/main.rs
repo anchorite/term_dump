@@ -2,8 +2,8 @@ use clap::{App, Arg};
 use unibilium::*;
 
 fn dump_boolean(term: &Term) {
-    for (name, value) in term.booleans().iter() {
-        println!("{}: {}", name, value);
+    for boolean in term.booleans().iter() {
+        println!("{}", boolean);
     }
 }
 
