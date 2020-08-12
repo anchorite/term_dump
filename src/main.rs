@@ -23,11 +23,8 @@ fn dump_numeric(term: &Term) {
 }
 
 fn dump_string(term: &Term) {
-    for (name, value) in term.strings().iter() {
-        match value {
-            None => println!("{}: NULL", name),
-            Some(value) => println!("{}: {}", name, value),
-        }
+    for string in term.strings().iter() {
+        println!("{}", string);
     }
 }
 
