@@ -1,27 +1,9 @@
 use clap::{App, Arg};
 use unibilium::*;
 
-fn dump_boolean(term: &Term) {
-    for boolean in term.booleans().iter() {
-        println!("{}", boolean);
-    }
-}
-
-fn dump_xboolean(term: &Term) {
-    for xbool in term.ext_booleans().iter() {
-        println!("{}", xbool);
-    }
-}
-
-fn dump_numeric(term: &Term) {
-    for numeric in term.numerics().iter() {
-        println!("{}", numeric);
-    }
-}
-
-fn dump_string(term: &Term) {
-    for string in term.strings().iter() {
-        println!("{}", string);
+fn dump_capabilities<Cap: std::fmt::Display>(capabilities: &[Cap]) {
+    for cap in capabilities {
+        println!("{}", cap);
     }
 }
 
@@ -61,12 +43,12 @@ fn main() {
         None => Term::from_env(),
     };
     if matches.is_present("boolean") {
-        dump_boolean(&term);
+        dump_capabilities(&term.booleans());
     } else if matches.is_present("numeric") {
-        dump_numeric(&term);
+        dump_capabilities(&term.numerics());
     } else if matches.is_present("string") {
-        dump_string(&term);
+        dump_capabilities(&term.strings());
     } else if matches.is_present("ext-boolean") {
-        dump_xboolean(&term);
+        dump_capabilities(&term.ext_booleans());
     }
 }
