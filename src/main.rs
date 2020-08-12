@@ -17,8 +17,8 @@ fn dump_xboolean(term: &Term) {
 }
 
 fn dump_numeric(term: &Term) {
-    for (name, value) in term.numerics().iter() {
-        println!("{}: {}", name, value);
+    for numeric in term.numerics().iter() {
+        println!("{}", numeric);
     }
 }
 
