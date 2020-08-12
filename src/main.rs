@@ -15,7 +15,7 @@ fn main() {
                 .short("t")
                 .long("terminal")
                 .takes_value(true)
-                .help("Dump terminfo for the provided terminal"),
+                .help("Dump terminfo capabilities for the provided terminal"),
         )
         .arg(
             Arg::with_name("boolean")
