@@ -55,12 +55,9 @@ fn main() {
                 .long("numeric")
                 .help("Dump numeric capabilities."),
         )
-        .arg(
-            Arg::with_name("string")
-                .short("s")
-                .long("string")
-                .help("Dump string capabilities."),
-        )
+        .arg(Arg::with_name("string").short("s").long("string").help(
+            "Dump string capabilities.\nEscape character is shown as '^['.\nUncommon unprintable characters as '\\xDD'.",
+        ))
         .get_matches();
     let term = match matches.value_of("terminal") {
         Some(name) => Term::from_term_name(name),
