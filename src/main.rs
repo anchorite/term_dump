@@ -34,6 +34,11 @@ fn main() {
                 .long("numeric")
                 .help("Dump numeric capabilities."),
         )
+        .arg(
+            Arg::with_name("ext-numeric")
+                .long("xnumeric")
+                .help("Dump extended numeric capabilities."),
+        )
         .arg(Arg::with_name("string").short("s").long("string").help(
             "Dump string capabilities.\nEscape character is shown as '^['.\nUncommon unprintable characters as '\\xDD'.",
         ))
@@ -50,5 +55,7 @@ fn main() {
         dump_capabilities(&term.strings());
     } else if matches.is_present("ext-boolean") {
         dump_capabilities(&term.ext_booleans());
+    } else if matches.is_present("ext-numeric") {
+        dump_capabilities(&term.ext_numerics());
     }
 }
