@@ -8,11 +8,8 @@ fn dump_boolean(term: &Term) {
 }
 
 fn dump_xboolean(term: &Term) {
-    for (name, value) in term.ext_booleans().iter() {
-        match name {
-            Some(name) => println!("{}: {}", name, value),
-            None => println!("NULL: {}", value),
-        }
+    for xbool in term.ext_booleans().iter() {
+        println!("{}", xbool);
     }
 }
 
