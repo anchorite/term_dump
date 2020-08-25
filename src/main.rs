@@ -42,6 +42,11 @@ fn main() {
         .arg(Arg::with_name("string").short("s").long("string").help(
             "Dump string capabilities.\nEscape character is shown as '^['.\nUncommon unprintable characters as '\\xDD'.",
         ))
+        .arg(
+            Arg::with_name("ext-string")
+                .long("xstring")
+                .help("Dump extended string capabilities.\nEscape character is shown as '^['.\nUncommon unprintable characters as '\\xDD'."),
+        )
         .get_matches();
     let term = match matches.value_of("terminal") {
         Some(name) => Term::from_term_name(name),
@@ -57,5 +62,7 @@ fn main() {
         dump_capabilities(&term.ext_booleans());
     } else if matches.is_present("ext-numeric") {
         dump_capabilities(&term.ext_numerics());
+    } else if matches.is_present("ext-string") {
+        dump_capabilities(&term.ext_strings());
     }
 }
