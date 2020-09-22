@@ -7,7 +7,7 @@ fn dump_capabilities<Cap: std::fmt::Display>(capabilities: &[Cap]) {
     }
 }
 
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = App::new("TermDump")
         .setting(AppSettings::ArgRequiredElseHelp)
         .about("Dump information stored in terminfo database")
@@ -50,8 +50,8 @@ fn main() {
         )
         .get_matches();
     let term = match matches.value_of("terminal") {
-        Some(name) => Term::from_term_name(name),
-        None => Term::from_env(),
+        Some(name) => Term::from_term_name(name)?,
+        None => Term::from_env()?,
     };
     if matches.is_present("boolean") {
         dump_capabilities(&term.booleans());
@@ -65,5 +65,7 @@ fn main() {
         dump_capabilities(&term.ext_numerics());
     } else if matches.is_present("ext-string") {
         dump_capabilities(&term.ext_strings());
-    }
+    };
+
+    Ok(())
 }
