@@ -1,4 +1,4 @@
-use clap::{App, Arg};
+use clap::{App, AppSettings, Arg};
 use unibilium::*;
 
 fn dump_capabilities<Cap: std::fmt::Display>(capabilities: &[Cap]) {
@@ -9,6 +9,7 @@ fn dump_capabilities<Cap: std::fmt::Display>(capabilities: &[Cap]) {
 
 fn main() {
     let matches = App::new("TermDump")
+        .setting(AppSettings::ArgRequiredElseHelp)
         .about("Dump information stored in terminfo database")
         .arg(
             Arg::with_name("terminal")
