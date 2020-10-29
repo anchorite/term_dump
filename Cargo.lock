@@ -300,6 +300,7 @@ dependencies = [
 [[package]]
 name = "unibilium"
 version = "0.1.0"
+source = "git+https://github.com/anchorite/unibilium.git#0e8548a521f34a971d6cd210ac983c856a35885a"
 dependencies = [
  "unibilium-sys",
 ]
@@ -307,6 +308,7 @@ dependencies = [
 [[package]]
 name = "unibilium-sys"
 version = "0.1.0"
+source = "git+https://github.com/anchorite/unibilium-sys.git#1b32d923b42483cb2d67502156491c88c81276fa"
 dependencies = [
  "bindgen",
 ]
